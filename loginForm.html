@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login form</title>
+    <link rel="stylesheet" href="loginForm.css" />
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="modal-background">
+        <div id="modal" class="ani">
+          <form action="action.php">
+            <div id="close-btn">X</div>
+            <div id="img-container">
+              <img src="images/img_avatar2.png" alt="" />
+            </div>
+            <div id="input-area">
+              <span>Username</span>
+              <input type="text" id="user-name" class="input-box" placeholder="Enter Username" />
+              <span>Password</span>
+              <input type="password" id="user-password" class="input-box" placeholder="Enter Password" />
+            </div>
+            <button id="modal-btn">Login</button>
+            <div>
+              <div id="check-container"><input type="checkbox" id="" checked /> <span>Remember me</span></div>
+            </div>
+          </form>
+          <div id="modal-bottom">
+            <button id="cancel-btn" type="reset">Cancel</button>
+            <span>Forgot <u>password?</u></span>
+          </div>
+        </div>
+      </div>
+      <div id="btn-container">
+        <button id="login-btn">Login</button>
+      </div>
+    </div>
+    <script>
+      const mainLogin = document.querySelector("#login-btn");
+      const modalContainer = document.querySelector("#modal-background");
+      const closeBtn = document.querySelector("#close-btn");
+      const cancel = document.querySelector("#cancel-btn");
+      let addCloseFunction = [closeBtn, cancel];
+
+      mainLogin.addEventListener("click", () => {
+        modalContainer.style.display = "block";
+      });
+      addCloseFunction.forEach((v) => {
+        v.addEventListener("click", (e) => {
+          modalContainer.style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>
