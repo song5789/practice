@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="test.js"></script>
+    <script>
+      console.log(name); // test.js 에 선언돼있는 name은 전역변수 취급함.
+
+      function add() {
+        // arguments 자동 객체
+        console.log(arguments); // 유사 배열 (forEach는 사용안됨.)
+        let sum = 0;
+        for (let i = 0; i < arguments.length; i++) {
+          sum += arguments[i];
+        }
+        return console.log(sum);
+      }
+      add(1, 2, 3, 4, 5);
+    </script>
+  </head>
+  <body></body>
+</html>

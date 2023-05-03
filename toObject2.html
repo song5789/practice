@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="target"></div>
+    <div id="target1"></div>
+    <script>
+      document.querySelector("title").innerText = "obj practice";
+      let obj = {
+        word: "hello",
+        start(elem) {
+          let domTarget = document.querySelector(elem);
+          //   alert(this.word); // 객체 내의 멤버를 호출할때는 this 를 붙임.
+          let that = this; // this는 스코프가 블록단위임. 현 객체를 다른 블록내에서 쓰고싶다면 임의의 변수에 복사함.
+          setInterval(function () {
+            domTarget.innerText =
+              that.word + " : " + new Date().toLocaleString();
+          }, 1000);
+        },
+      };
+      obj.start("#target");
+    </script>
+  </body>
+</html>

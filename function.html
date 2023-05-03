@@ -1,0 +1,42 @@
+<script>
+  //   function checkAge(age) {
+  //     if (age > 18) {
+  //       return true;
+  //     } else {
+  //       return confirm("보호자의 동의를 받으셨나요?");
+  //     }
+  //   }
+
+  // 삼항 연산자 사용
+  function checkAge(age) {
+    return age > 18 ? true : confirm("보호자의 동의를 받으셨나요?");
+  }
+
+  // || 를 이용한 단락 평가
+  function checkAge2(age) {
+    return age > 18 || confirm("보호자의 동의를 받으셨나요?");
+  }
+
+  function min(a, b) {
+    return a < b ? a : b;
+  }
+
+  function pow(a, n) {
+    if (n > 0) {
+      return a ** n;
+    } else {
+      alert("n은 1이상의 자연수여야함.");
+    }
+  }
+
+  //   function ask(question, yes, no) {
+  //     if (confirm(question)) yes();
+  //     else no();
+  //   }
+
+  //   ask(
+  //     "동의하십니까?",
+  //     () => alert("동의하셨습니다."),
+  //     () => alert("취소 버튼을 누르셨습니다.")
+  //   );
+</script>
