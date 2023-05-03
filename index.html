@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      fieldset {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      div {
+        margin-right: 10px;
+      }
+      .delete {
+        width: 50px;
+        height: 20px;
+        background-color: #e5e5e5;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 5px;
+      }
+      .delete:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <fieldset>
+      <legend>학생 등록</legend>
+      <div>
+        <label for="stName">이름</label>
+        <input type="text" id="stName" />
+      </div>
+      <div>
+        <label for="stAge">나이</label>
+        <input type="number" id="stAge" />
+      </div>
+      <div>
+        <label for="stPhone">전화번호</label>
+        <input type="tel" id="stPhone" />
+      </div>
+      <div>
+        <button>등록</button>
+      </div>
+    </fieldset>
+    <button id="all-delete">전체삭제</button>
+    <dvi id="list"> </dvi>
+    <script>
+      const btn = document.querySelector("button");
+      let name = document.querySelector("#stName");
+      let age = document.querySelector("#stAge");
+      let phone = document.querySelector("#stPhone");
+      let stArr = [];
+      const list = document.querySelector("#list");
+
+      function addArrValue() {
+        stArr.push(makeStObj(name.value, age.value, phone.value));
+        showList();
+      }
+      function inputBoxinit() {
+        name.value = age.value = phone.value = "";
+        name.focus();
+      }
+
+      function makeStObj(name, age, phone) {
+        return { name, age, phone };
+      }
+
+      btn.addEventListener("click", () => {
+        addArrValue();
+        inputBoxinit();
+      });
+      name.addEventListener("keypress", () => {
+        if (event.key == "Enter") {
+          age.focus();
+        }
+      });
+      age.addEventListener("keypress", () => {
+        if (event.key == "Enter") {
+          phone.focus();
+        }
+      });
+      phone.addEventListener("keypress", () => {
+        if (event.key == "Enter") {
+          addArrValue();
+          inputBoxinit();
+        }
+      });
+
+      function showList() {
+        list.innerHTML = "";
+        for (let index in stArr) {
+          let div = document.createElement("div");
+          div.innerText = `이름: ${stArr[index]["name"]}, 나이: ${stArr[index]["age"]}, 전화번호: ${stArr[index]["phone"]}`;
+
+          let deleteBtn = document.createElement("button");
+          deleteBtn.className = "delete";
+          deleteBtn.innerText = "삭제";
+          div.append(deleteBtn);
+          deleteBtn.addEventListener("click", () => {
+            div.remove();
+            stArr.splice(this.index, 1);
+          });
+          list.append(div);
+          // insertAdjacenttHTML : 문자열로 요소 삽입.
+          // list.insertAdjacentHTML("beforeend", `<div> ${stArr[index]["name"]} : ${stArr[index]["age"]} </div`);
+        }
+      }
+      const allDelete = document.querySelector("#all-delete");
+      allDelete.addEventListener("click", () => {
+        stArr = [];
+        list.innerHTML = "";
+        console.log(stArr);
+      });
+
+      // ..in : 객내 내부의 모든속성 참조
+      // ..of : 객체 만 참조. (배열 형식으로 나옴)
+      // 우아아아아아아아아아아
+    </script>
+  </body>
+</html>

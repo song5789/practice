@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="target1"></div>
+    <div id="target2"></div>
+    <script>
+      //   // 매번 고유한 값을 생성
+
+      //   console.log(new Date().getTime());
+      //   // 1970년 1월 1일 0시 기준으로 매시간을 초단위로 계산
+      //   console.log(Math.random());
+      //   // 0 <= x < 1 사이의 난수 반환
+      //   console.log((new Date().getTime() + Math.random()) * 10000);
+
+      //   console.log(this);
+      //   function test() {
+      //     console.log(this);
+      //   }
+      //   test();
+
+      //   // let obj = new Object();
+      //   // let obj = {};
+      //   // func = new func();
+
+      //   let t = new test();
+
+      //   let user = {
+      //     firstName: "보라",
+      //     sayHi() {
+      //       let arrow = () => console.log(this.firstName); // 보라
+      //       arrow();
+
+      //       let normal = function () {
+      //         console.log(this.firstName); // undefined
+      //       };
+      //       normal();
+      //     },
+      //   };
+
+      //   user.sayHi(); // 보라
+
+      // 객체 리터럴에서 'this' 사용하기
+
+      //   function makeUser() {
+      //     return { name: "John", ref: this };
+      //   }
+
+      //   let user = makeUser();
+
+      //   console.log(user.ref.name); // Error!
+
+      // 해당 예제의 this 는 객체를 호출하는것이 아닌 함수를 호출함.
+      // this 값은 전체 함수가 됨. 코드블록과 객체 리터럴은 영향을 주지않음.
+      // 따라서 ref: this 는 함수의 현재 this 값을 가져옴.
+
+      // 계산기 만들기
+
+      let calculator = {
+        a: null,
+        b: null,
+        read() {
+          this.a = +prompt("첫 번째 숫자 입력", 0);
+          this.b = +prompt("두 번째 숫자 입력", 0);
+        },
+        sum() {
+          return this.a + this.b;
+        },
+        mul() {
+          return this.a * this.b;
+        },
+      };
+
+      calculator.read();
+      alert(calculator.sum());
+      alert(calculator.mul());
+
+      // 체이닝
+      // 객체 내부의 메서드를 연이어 호출하고자 할때
+      // 한 번에 다 적어주고싶다면
+      // 메서드 호출 시 객체 자신을 반환하게 만들면됨.
+
+      let ladder = {
+        step: 0,
+        up() {
+          this.step++;
+          return this;
+        },
+        down() {
+          this.step--;
+          return this;
+        },
+        showStep() {
+          console.log(`현재 층은 ${this.step} 층 입니다.`);
+          return this;
+        },
+      };
+
+      ladder.up().up().down().showStep();
+    </script>
+  </body>
+</html>

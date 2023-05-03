@@ -1,0 +1,17 @@
+<script>
+  let person = {
+    name: "홍길동",
+    age: 12,
+    class: { ban: 1, num: 7 },
+    say(para) {
+      console.log("Hi " + para);
+    },
+  };
+
+  person.walk = function () {
+    console.log("walk");
+  };
+  // 유지보수가 좋아지고, 전역변수 사용이 줄어 듦.
+  person.say("Hello!");
+  person.walk();
+</script>

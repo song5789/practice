@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+      }
+      div {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: red;
+        left: 0;
+      }
+      span {
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+        display: block;
+        position: relative;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <span></span>
+
+    <script>
+      // 콜백 함수 - 대기 후 실행
+      // div 요소를 100px 움직인 후 alert 실행
+      let div = document.querySelector("div");
+      let span = document.querySelector("span");
+      document.body.onclick = function () {
+        // div.style.left = "100px";
+        moveDiv(div, 5, console.log);
+        moveDiv(span, 1, console.log);
+      };
+
+      // node.js : 네트워크는 비동기 이벤트 기반
+      function moveDiv(div, duration, callback) {
+        div.style.transition = duration + "s";
+        div.style.left = "100px";
+
+        console.dir(getComputedStyle(div).left);
+        // let timer  = setInterval(function(){
+        //     let left = getComputedStyle(div).left;
+
+        // },500);
+        console.dir(div);
+        let interval = setInterval(function () {
+          console.dir(getComputedStyle(div).left);
+          if (getComputedStyle(div).left == "100px") {
+            clearInterval(interval);
+          }
+        }, 200);
+      }
+    </script>
+  </body>
+</html>

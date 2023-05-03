@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /*
+            opacity: 0; -투명, 요소가 있음.
+            visivilty: hidden; -숨김, 요소가 있음
+
+            opacity + visivility = display: none;
+            */
+      #modal {
+        position: fixed;
+        width: 250px;
+        height: 250px;
+        background: red;
+        left: 50%;
+        top: 50%;
+        line-height: 250px;
+        text-align: center;
+        transform: translate(-50%, -50%);
+        display: none;
+      }
+      #btn {
+        background-color: lightgoldenrodyellow;
+        width: 100px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        cursor: pointer;
+      }
+      .ani {
+        animation: showModal 0.6s;
+      }
+      @keyframes showModal {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        const btn = document.querySelector("#btn");
+        const modal = document.querySelector("#modal");
+        let flag = true;
+        // btn.addEventListener("click", () => {
+        //     if (flag === 1) {
+        //         modal.style.display = "block";
+        //         flag = 0;
+        //     } else if (flag === 0) {
+        //         modal.style.display = "none";
+        //         flag = 1;
+        //     }
+        // });
+
+        btn.onclick = (event) => {
+          if (flag) {
+            modal.style.display = "block";
+            event.target.innerText = "Close";
+          } else {
+            modal.style.display = "none";
+            event.target.innerText = "Login";
+          }
+          flag = !flag; //토글
+        };
+
+        //이벤트 위임: 부모에 이벤트를 걸고 해당 자식을 찾아냄.
+        window.onclick = (e) => {
+          console.dir(document.documentElement);
+          console.dir(e.target);
+          if (e.target === document.documentElement) {
+            modal.style.display = "none";
+            flag = true;
+            btn.innerText = "Login";
+          }
+          //document.documentElement = html
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="modal" class="ani">Show</div>
+    <div id="btn">Login</div>
+    <script></script>
+  </body>
+</html>
